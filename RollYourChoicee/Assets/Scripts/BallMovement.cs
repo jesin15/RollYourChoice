@@ -8,6 +8,7 @@ public class BallMovement : MonoBehaviour
     public float speed = 10f;
     private float xinput;
     private float zinput;
+    public ParticleSystem finisheffect;
 
     void Awake()
     {
@@ -31,5 +32,15 @@ public class BallMovement : MonoBehaviour
     void move()
     {
         rb.AddForce(new Vector3(xinput, 0f, zinput) * speed);
+    }
+    private void OnCollisionEnter(Collision collision) 
+    {
+        if (collision.gameObject.CompareTag("FinishLine"))
+        {
+            finisheffect.Play();
+            //load end scene 
+
+        }
+        
     }
 }
