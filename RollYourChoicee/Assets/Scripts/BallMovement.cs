@@ -11,6 +11,7 @@ public class BallMovement : MonoBehaviour
     private float zinput;
     private bool isgrounded;
     public GameObject ball;
+    
    
     public ParticleSystem finisheffect;
     public float jumpforce = 3f;
@@ -24,6 +25,7 @@ public class BallMovement : MonoBehaviour
     void Update()
     {
         processInputs();
+       
         if (Input.GetButtonDown("Jump")&&isgrounded==true){
             rb.AddForce(new Vector3(0f, jumpforce, 0f));
             
@@ -34,16 +36,21 @@ public class BallMovement : MonoBehaviour
     {
         move();
         
+    
+
+
     }
     void processInputs()
     {
         xinput = Input.GetAxis("Horizontal");
         zinput = Input.GetAxis("Vertical");
         
+
     }
     void move()
     {
         rb.AddForce(new Vector3(xinput, 0f, zinput) * speed);
+        
     }
   
     private void OnCollisionEnter(Collision collision) 
